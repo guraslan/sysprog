@@ -16,8 +16,9 @@
 
 
 type=$1
+tmpfile=`mktemp --suffix=.c`
 
-cat <<EOF > test.c
+cat <<EOF > $tmpfile
 #include <sys/types.h>
 
 int main(int argc, char* argv[])
@@ -30,4 +31,6 @@ int main(int argc, char* argv[])
 EOF
 
 # let gcc preprocessor do the job
-gcc -E test.c | grep "$type"
+gcc -E $tmpfile | grep "$type"
+
+rm -f $tmpfile
