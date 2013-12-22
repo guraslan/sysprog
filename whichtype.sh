@@ -31,6 +31,6 @@ int main(int argc, char* argv[])
 EOF
 
 # let gcc preprocessor do the job
-gcc -E $tmpfile | grep "$type"
+gcc -E $tmpfile | grep -i "$type"
 
 rm -f $tmpfile
